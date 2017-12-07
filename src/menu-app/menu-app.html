@@ -1,0 +1,37 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../pilaf-header/pilaf-header.html">
+<link rel="import" href="../menu-content/menu-content.html">
+
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<dom-module id="menu-app">
+    <template>
+        <style>
+            :host {
+                display: block;
+                font-family: 'Roboto', 'Noto', sans-serif;
+            }
+            body {
+                flex-grow: 1;
+            }
+            iron-pages {
+                padding: 20px;
+                background-color: #F5F5F6;
+                flex-grow: 1;
+            }
+        </style>
+        <app-header-layout fullbleed>
+            <pilaf-header id="app" selected="{{selected}}" slot="header"></pilaf-header>
+            <iron-pages selected="{{selected}}">
+                <template id="menu-contents" is="dom-repeat" items="[[days]]">
+                    <menu-content day$="[[item]]"></menu-content>
+                </template>
+            </iron-pages>
+        </app-header-layout>
+    </template>
+
+    <script src="menu-app.js"></script>
+</dom-module>

@@ -1,0 +1,7 @@
+{
+  "name": "Pilaf Life",
+  "short_name": "Pilaf Life",
+  "description": "Application for checking the menu in CMU Juan Luis Vives",
+  "start_url": "/",
+  "display": "standalone"
+}

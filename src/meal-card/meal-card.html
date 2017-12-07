@@ -1,0 +1,72 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/places-icons.html">
+
+<dom-module id="meal-card">
+    <template>
+        <style>
+            .menu-header {
+                @apply --paper-font-headline;
+                margin-bottom: 20px;
+            }
+
+            paper-card {
+                display: flex;
+                flex-direction: column;
+                margin: 15px auto;
+            }
+
+            .course-title {
+                @apply --paper-font-subhead;
+            }
+
+            paper-card span {
+                margin-left: 20px;
+            }
+
+            paper-card ul {
+                color: var(--paper-grey-600);
+                @apply --paper-font-body2;
+            }
+            .collapsed {
+                height: 70px;
+                overflow: hidden;
+                transition: height 300ms;
+            }
+
+        </style>
+            <paper-card onclick="this.classList.toggle('collapsed')" id="card" elevation="1">
+                <paper-ripple></paper-ripple>
+                <div class="card-content">
+                    <div class="menu-header">
+                        <paper-icon-button id="icon" icon="maps:restaurant"></paper-icon-button>
+                        [[mealname]]
+                    </div>
+                    <div class="card-actions horizontal">
+                        <span>Primeros</span>
+                        <ul>
+                            <template is="dom-repeat" items="[[mealdata.firstCourses]]">
+                                <li>[[item]]</li>
+                            </template>
+                        </ul>
+                        <span class="course-title">Segundos</span>
+                        <ul>
+                            <template is="dom-repeat" items="[[mealdata.secondCourses]]">
+                                <li>[[item]]</li>
+                            </template>
+                        </ul>
+                        <span>Postres</span>
+                        <ul>
+                            <template is="dom-repeat" items="[[mealdata.desserts]]">
+                                <li>[[item]]</li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+            </paper-card>
+    </template>
+    <script src="meal-card.js"></script>
+</dom-module>

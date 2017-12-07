@@ -1,0 +1,16 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../meal-card/meal-card.html">
+
+<dom-module id="menu-content">
+    <template>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
+        <meal-card mealData$="[[day.lunch]]" mealname="Comida"></meal-card>
+        <meal-card mealData$="[[day.dinner]]" mealname="Cena"></meal-card>
+    </template>
+    <script src="menu-content.js"></script>
+</dom-module>
