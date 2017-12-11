@@ -69,6 +69,7 @@ class MenuApp extends Polymer.Element {
         function parseDataForMoment(array) {
             let data = array[0];
             let day = array[1];
+            day -= 1; // In the API days start at 1... Stupid I know
             let moment = array[2];
             console.log("Moment is: " + moment);
             let firstCourses = [];
@@ -84,16 +85,16 @@ class MenuApp extends Polymer.Element {
                     let d = menus[dish];
                     switch (d["tipo"]) {
                         case "3":
-                            desserts.push(d["texto"]);
-                            break;
+                        desserts.push(d["texto"]);
+                        break;
                         case "2":
-                            secondCourses.push(d["texto"]);
-                            break;
+                        secondCourses.push(d["texto"]);
+                        break;
                         case "1":
-                            firstCourses.push(d["texto"]);
-                            break;
+                        firstCourses.push(d["texto"]);
+                        break;
                         default:
-                            console.error("Undefined dish type!");
+                        console.error("Undefined dish type!");
                     }
                 } else {
                     console.error("Dish doesn't have type property!");
@@ -105,6 +106,42 @@ class MenuApp extends Polymer.Element {
             momentData.firstCourses = firstCourses;
             momentData.secondCourses = secondCourses;
             momentData.desserts = desserts;
+
+            if (momentData == undefined) {
+                console.log("No data for this day!");
+                loadedDays[day].lunch = {
+                    firstCourses: [
+                    "Sin datos"
+                    ],
+                    secondCourses: [
+                    "Sin datos"
+                    ],
+                    desserts: [
+                    "Sin datos"
+                    ]
+                };
+                loadedDays[day].dinner = {
+                    firstCourses: [
+                    "Sin datos"
+                    ],
+                    secondCourses: [
+                    "Sin datos"
+                    ],
+                    desserts: [
+                    "Sin datos"
+                    ]
+                };
+                return;
+            }
+            if (momentData.firstCourses.length == 0) {
+                momentData.firstCourses = ["Sin datos"];
+            }
+            if (momentData.secondCourses.length == 0) {
+                momentData.secondCourses = ["Sin datos"];
+            }
+            if (momentData.desserts.length == 0) {
+                momentData.desserts = ["Sin datos"];
+            }
 
             if (moment === 0) {
                 console.log("Adding lunch for day " + day);
@@ -121,7 +158,7 @@ class MenuApp extends Polymer.Element {
         }
 
         let promises = [];
-        for (let i = 0; i < 7; i++) {
+        for (let i = 1; i < 8; i++) { // In the API days start at 1... Stupid I know
             for (let j = 0; j < 2; j++) {
                 let p = getDataForMoment(i, j);
                 p.then(parseDataForMoment);
@@ -151,174 +188,174 @@ class MenuApp extends Polymer.Element {
                 type: Array,
                 notify: true,
                 value: [
-                    {
-                        lunch: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        },
-                        dinner: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        }
+                {
+                    lunch: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
                     },
-                    {
-                        lunch: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        },
-                        dinner: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        }
-                    },
-                    {
-                        lunch: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        },
-                        dinner: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        }
-                    },
-                    {
-                        lunch: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        },
-                        dinner: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        }
-                    },
-                    {
-                        lunch: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        },
-                        dinner: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        }
-                    },
-                    {
-                        lunch: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        },
-                        dinner: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        }
-                    },
-                    {
-                        lunch: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        },
-                        dinner: {
-                            firstCourses: [
-                                "Sin datos"
-                            ],
-                            secondCourses: [
-                                "Sin datos"
-                            ],
-                            desserts: [
-                                "Sin datos"
-                            ]
-                        }
+                    dinner: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
                     }
+                },
+                {
+                    lunch: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    },
+                    dinner: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    }
+                },
+                {
+                    lunch: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    },
+                    dinner: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    }
+                },
+                {
+                    lunch: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    },
+                    dinner: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    }
+                },
+                {
+                    lunch: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    },
+                    dinner: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    }
+                },
+                {
+                    lunch: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    },
+                    dinner: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    }
+                },
+                {
+                    lunch: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    },
+                    dinner: {
+                        firstCourses: [
+                        "Sin datos"
+                        ],
+                        secondCourses: [
+                        "Sin datos"
+                        ],
+                        desserts: [
+                        "Sin datos"
+                        ]
+                    }
+                }
                 ]
             }
         }
